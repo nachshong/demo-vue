@@ -1,105 +1,16 @@
-<script lang="ts">
-import { propsToAttrMap } from '@vue/shared';
+<script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
-import JsonProducts from './stores/products.json';
-
-import MyHeader from './components/MyHeader.vue';
-import Products from './components/Products.vue';
-import type { Product } from './types/product';
-
-export default {
-    components: {
-        MyHeader,
-        Products
-    },
-    data() {
-        return { 
-            products: JsonProducts
-        }
-    },
-    computed: {
-        categories(): string[] {
-            return this.products.map((p: Product) => p.category);
-        }
-    },
-
-  mounted() {
-    //his.
-  }
-}
-
 </script>
 
 <template>
-    <div>
-    <MyHeader :categories="categories" />
-</div>
-<div>
-    <Products :list="products" />
-</div>
-    <!--<RouterView />-->
+  <div>
+    <RouterLink to="/">Home</RouterLink>
+    &nbsp; | &nbsp;
+    <RouterLink to="/products">Products</RouterLink>
+    &nbsp; | &nbsp;
+    <RouterLink to="/about">About</RouterLink>
+  </div>
+  <div>
+    <RouterView />
+  </div>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>

@@ -1,12 +1,28 @@
 <script  lang="ts">
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
 
-props: {
-    categories: {} as string[]
-}
+  props: {
+    categories: Array<string>
+  },
 
-}
+  data() {
+    return {
+      category: ''
+    }
+  },
+
+  watch: {
+    category(newVal: string, oldVal: string) {
+      if (newVal != oldVal) {
+        this.$emit('filter', newVal);
+        console.log(newVal || 'All');
+      }
+    }
+  }
+
+});
 </script>
 
 <template>
@@ -16,8 +32,9 @@ props: {
     <div class="sort">
       <div class="collection-sort">
         <label>Filter by:</label>
-        <select>
-          <option v-for="c in categories" >{{c}}</option>
+        <select v-model="category">
+          <option value="">All</option>
+          <option v-for="c in categories">{{c}}</option>
         </select>
       </div>
 
@@ -59,6 +76,7 @@ props: {
 .collection-sort:first-child {
   padding-right: 20px;
 }
+
 @media (max-width: 480px) {
   .product-filter {
     flex-direction: column;

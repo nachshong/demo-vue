@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import MyHeader from '../components/MyHeader.vue'
-import Products from '../components/Products.vue'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  console.log(`Home Page!`)
+})
+
 </script>
 
 <template>
-  <MyHeader />
-  <Products />
+  <h1>Home Page!</h1>
 </template>
